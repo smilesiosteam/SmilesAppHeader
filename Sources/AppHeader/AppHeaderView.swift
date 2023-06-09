@@ -129,12 +129,19 @@ public class AppHeaderView: UIView {
     }
     
         
-    public func setupHeaderView(backgroundColor: UIColor, searchBarColor: UIColor, pointsViewColor: UIColor?,  titleColor: UIColor, headerTitle: String, showHeaderNavigaton: Bool, topCurveShouldAdd: Bool = false, haveSearchBorder: Bool = false, shouldShowBag: Bool = false, isFirstLaunch: Bool = false, isGuestUser: Bool,showLocationToolTip: (() -> Void)?) {
+    public func setupHeaderView(backgroundColor: UIColor, searchBarColor: UIColor, pointsViewColor: UIColor?,  titleColor: UIColor, headerTitle: String, showHeaderNavigaton: Bool, topCurveShouldAdd: Bool = false, haveSearchBorder: Bool = false, shouldShowBag: Bool = false, isFirstLaunch: Bool = false, isGuestUser: Bool,toolTipInfo: @escaping((SmilesLocationHandler?) -> (Bool,UIView))) {
         self.isGuestUser = isGuestUser
         smilesLocationHandler = SmilesLocationHandler.init(controller: delegate as? UIViewController, isFirstLaunch: isFirstLaunch)
         smilesLocationHandler?.smilesLocationHandlerDelegate = self
         smilesLocationHandler?.fireEvent = fireEvent
-        smilesLocationHandler?.showLocationToolTip = showLocationToolTip
+        smilesLocationHandler?.showLocationToolTip = {
+            let (needToshow,contentVu) = toolTipInfo(self.smilesLocationHandler)
+            if needToshow {
+                self.smilesLocationHandler?.toolTipForLocationShown = true
+                self.locationToolTip = EasyTipView(contentView: contentVu, preferences: EasyTipViewPreference.locationTipPreferences(), delegate: self.smilesLocationHandler as? EasyTipViewDelegate)
+                self.locationToolTip?.show(forView: self.locationArrowImageView)
+            }
+        }
 //        NotificationCenter.default.removeObserver(self, name: .LocationUpdated, object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(locationUpdatedManually(_:)), name: .LocationUpdated, object: nil)
         
