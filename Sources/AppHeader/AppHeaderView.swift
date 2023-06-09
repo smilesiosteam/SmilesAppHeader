@@ -12,7 +12,7 @@ import SmilesLocationHandler
 import SmilesEasyTipView
 import SmilesUtilities
 
-protocol AppHeaderDelegate: AnyObject {
+public protocol AppHeaderDelegate: AnyObject {
     func didTapOnBackButton()
     func didTapOnSearch()
     func didTapOnLocation()
@@ -22,7 +22,7 @@ protocol AppHeaderDelegate: AnyObject {
     func didTapOnBagButton()
 }
 
-extension AppHeaderDelegate {
+public extension AppHeaderDelegate {
     func showPopupForLocationSetting(){}
     func didTapOnToolTipSearch(){}
     func locationUpdatedSuccessfully(){}
@@ -31,7 +31,7 @@ extension AppHeaderDelegate {
     func didTapOnBagButton() {}
 }
 
-class AppHeaderView: UIView {
+public class AppHeaderView: UIView {
     
     // MARK: -- Outlets
     
@@ -40,7 +40,7 @@ class AppHeaderView: UIView {
     @IBOutlet weak var locationNickName: UILabel!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var headerTitleImageView: UIImageView!
+    @IBOutlet public weak var headerTitleImageView: UIImageView!
     @IBOutlet weak var headerBackButton: UIButton!
     @IBOutlet weak var bottomCurveView: UIView!
     @IBOutlet weak var bottomCurveWithTabsView: UIView!
@@ -56,7 +56,7 @@ class AppHeaderView: UIView {
     @IBOutlet weak var backButtonView: UIView!
     @IBOutlet weak var bagButtonView: UIView!
     @IBOutlet var contentView: UIView!
-    @IBOutlet var view_container: UIView!
+    @IBOutlet public var view_container: UIView!
     @IBOutlet weak var pointsView: UIView!
     @IBOutlet weak var pointsIconImageView: UIImageView!
     @IBOutlet weak var pointsLabel: UILabel!
@@ -70,19 +70,19 @@ class AppHeaderView: UIView {
     @IBOutlet weak var searchLabelCompact: UILabel!
     @IBOutlet weak var searchIconImageViewCompact: UIImageView!
     
-    @IBOutlet weak var bodyViewCompact: UIView!
+    @IBOutlet public weak var bodyViewCompact: UIView!
     @IBOutlet weak var searchLabel: UILabel!
     @IBOutlet weak var searchIconImageView: UIImageView!
     @IBOutlet weak var lottieAnimationView: UIView!
     @IBOutlet weak var rewardPointsButton: UIButton!
     
-    @IBOutlet weak var promotionContainer: UIView!
-    @IBOutlet weak var promotionLabel: UILabel!
+    @IBOutlet public weak var promotionContainer: UIView!
+    @IBOutlet public weak var promotionLabel: UILabel!
     
     @IBOutlet weak var backBtnBottomSpace: NSLayoutConstraint!
     
     @IBOutlet weak var headerBarHeight: NSLayoutConstraint!
-    weak var delegate: AppHeaderDelegate?
+    public weak var delegate: AppHeaderDelegate?
     var smilesLocationHandler : SmilesLocationHandler?
     var gradientLayer:CAGradientLayer? = nil
     var locationToolTip: EasyTipView?
@@ -129,7 +129,7 @@ class AppHeaderView: UIView {
     }
     
         
-    func setupHeaderView(backgroundColor: UIColor, searchBarColor: UIColor, pointsViewColor: UIColor?,  titleColor: UIColor, headerTitle: String, showHeaderNavigaton: Bool, topCurveShouldAdd: Bool = false, haveSearchBorder: Bool = false, shouldShowBag: Bool = false, isFirstLaunch: Bool = false, isGuestUser: Bool,showLocationToolTip: (() -> Void)?) {
+    public func setupHeaderView(backgroundColor: UIColor, searchBarColor: UIColor, pointsViewColor: UIColor?,  titleColor: UIColor, headerTitle: String, showHeaderNavigaton: Bool, topCurveShouldAdd: Bool = false, haveSearchBorder: Bool = false, shouldShowBag: Bool = false, isFirstLaunch: Bool = false, isGuestUser: Bool,showLocationToolTip: (() -> Void)?) {
         self.isGuestUser = isGuestUser
         smilesLocationHandler = SmilesLocationHandler.init(controller: delegate as? UIViewController, isFirstLaunch: isFirstLaunch)
         smilesLocationHandler?.smilesLocationHandlerDelegate = self
@@ -200,7 +200,7 @@ class AppHeaderView: UIView {
     
     
     
-    func configureFonts() {
+    public func configureFonts() {
         self.title.font = .circularXXTTMediumFont(size: 16)
         self.locationNickName.font = .circularXXTTBoldFont(size: 18)
         self.pointsLabel.font = .circularXXTTBoldFont(size: 18)
@@ -209,7 +209,7 @@ class AppHeaderView: UIView {
 
     }
     
-    func setBottomSegment(title1: String?, icon1: UIImage?, title2: String?, icon2: UIImage?, shouldShowSegment: Bool) {
+    public func setBottomSegment(title1: String?, icon1: UIImage?, title2: String?, icon2: UIImage?, shouldShowSegment: Bool) {
         if shouldShowSegment {
             self.bottomCurveView.isHidden = true
             self.bottomSegmentView.isHidden = false
@@ -224,7 +224,7 @@ class AppHeaderView: UIView {
         }
     }
     
-    func setBottomSegmentForFood(title1: String?, icon1: UIImage?, title2: String?, icon2: UIImage?, shouldShowSegment: Bool, isFromPickup: Bool = false) {
+    public func setBottomSegmentForFood(title1: String?, icon1: UIImage?, title2: String?, icon2: UIImage?, shouldShowSegment: Bool, isFromPickup: Bool = false) {
         if shouldShowSegment {
             self.bottomCurveView.isHidden = true
             self.bottomSegmentView.isHidden = false
@@ -240,7 +240,7 @@ class AppHeaderView: UIView {
         }
     }
     
-    func gradiantColor(with colors: [CGColor], for direction: String?) {
+    public func gradiantColor(with colors: [CGColor], for direction: String?) {
         gradientLayer?.removeFromSuperlayer()
         gradientLayer = GradientUtility.shared.getGradientLayer(forView: view_container,
                                                                     colors: colors,
@@ -248,11 +248,11 @@ class AppHeaderView: UIView {
         view_container.layer.insertSublayer(gradientLayer!, at: 0)
     }
     
-    func setBackgroundColor(_ color: UIColor?) {
+    public func setBackgroundColor(_ color: UIColor?) {
         view_container.backgroundColor = color
     }
     
-    func setPointsIcon(with iconURL: String?, shouldShowAnimation: Bool = true) {
+    public func setPointsIcon(with iconURL: String?, shouldShowAnimation: Bool = true) {
         if let iconJsonAnimationUrl = iconURL, !iconJsonAnimationUrl.isEmpty {
             lottieAnimationView.isHidden = false
             pointsIconImageView.isHidden = true
@@ -265,7 +265,7 @@ class AppHeaderView: UIView {
         }
     }
     
-    func setPointsOfUser(with userPoints: String?) {
+    public func setPointsOfUser(with userPoints: String?) {
         if !isGuestUser {
             pointsLabel.text = userPoints ?? "0"
         } else {
@@ -273,7 +273,7 @@ class AppHeaderView: UIView {
         }
     }
     
-    func setLocation(locationName: String, locationNickName: String) {
+    public func setLocation(locationName: String, locationNickName: String) {
     print("------ locationName \(locationName)0000000 locationNickName ---- \(locationNickName)")
         
         if locationNickName.isEmpty || locationNickName == "" {
@@ -290,19 +290,19 @@ class AppHeaderView: UIView {
         }
     }
     
-    func setSearchText(with searchText: String?) {
+    public func setSearchText(with searchText: String?) {
         searchLabel.text = searchText ?? ""
         searchLabelCompact.text = searchText ?? ""
     }
     
-    func setHeaderTitle(title: String?) {
+    public func setHeaderTitle(title: String?) {
         self.title.text = title
     }
     
-    func setHeaderTitleIcon(iconURL: String?) {
+    public func setHeaderTitleIcon(iconURL: String?) {
         self.headerTitleImageView.setImageWithUrlString(iconURL ?? "", defaultImage: "")
     }
-    func adjustUI(compact:Bool){
+    public func adjustUI(compact:Bool){
         backBtnBottomSpace.constant = compact ? 8 : 22
         headerBarHeight.constant = compact ? 40 : 54
         backButtonView.backgroundColor = compact ? .appRevampHomeCompactSearchColor : .white
@@ -312,11 +312,11 @@ class AppHeaderView: UIView {
             self.layoutIfNeeded()
         }
     }
-    func setBackgroundColorForCurveView(color: UIColor?) {
+    public func setBackgroundColorForCurveView(color: UIColor?) {
         bottomCurveView?.backgroundColor = color
     }
     
-    func setBackgroundColorForTabsCurveView(color: UIColor?) {
+    public func setBackgroundColorForTabsCurveView(color: UIColor?) {
         bottomCurveWithTabsView.backgroundColor = color
     }
     
@@ -348,18 +348,18 @@ class AppHeaderView: UIView {
         delegate?.didTapOnBagButton()
     }
     
-    func loadViewFromNib() -> UIView? {
+    public func loadViewFromNib() -> UIView? {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "AppHeaderView", bundle: bundle)
         return nib.instantiate(withOwner: self, options: nil).first as? UIView
     }
     
-    @objc func locationUpdatedManually(_ notification: Notification) {
+    @objc public func locationUpdatedManually(_ notification: Notification) {
         smilesLocationHandler?.locationUpdatedManually(notification)
     }
     
     
-    func buttonStatus(isButton1Selected: Bool) {
+    public func buttonStatus(isButton1Selected: Bool) {
         if isButton1Selected {
             bottomSegment1Icon.image = bottomSegment1Icon.image?.imageWithColor(color1: .foodEnableColor)
             bottomSegment1Title.textColor = .foodEnableColor
@@ -388,19 +388,19 @@ class AppHeaderView: UIView {
 
 
 extension AppHeaderView : SmilesLocationHandlerDelegate{
-    func showPopupForLocationSetting() {
+    public func showPopupForLocationSetting() {
         self.delegate?.showPopupForLocationSetting()
     }
     
-    func searchBtnTappedOnToolTip() {
+    public func searchBtnTappedOnToolTip() {
         self.delegate?.didTapOnToolTipSearch()
     }
     
-    func getUserLocationWith(locationName: String, andLocationNickName: String) {
+    public func getUserLocationWith(locationName: String, andLocationNickName: String) {
         self.setLocation(locationName: locationName, locationNickName: andLocationNickName)
     }
     
-    func locationUpdatedSuccessfully(){
+    public func locationUpdatedSuccessfully(){
         self.delegate?.locationUpdatedSuccessfully()
     }
 }
