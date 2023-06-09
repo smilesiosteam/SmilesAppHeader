@@ -107,7 +107,7 @@ public class AppHeaderView: UIView {
     }
     
     func commonInit() {
-        _ = Bundle.main.loadNibNamed("AppHeaderView", owner: self, options: nil)?.first as? UIView
+        _ = Bundle.module.loadNibNamed("AppHeaderView", owner: self, options: nil)?.first as? UIView
         addSubview(view_container)
         view_container.frame = bounds
         
@@ -349,8 +349,7 @@ public class AppHeaderView: UIView {
     }
     
     public func loadViewFromNib() -> UIView? {
-        let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: "AppHeaderView", bundle: bundle)
+        let nib = UINib(nibName: "AppHeaderView", bundle: Bundle.module)
         return nib.instantiate(withOwner: self, options: nil).first as? UIView
     }
     
