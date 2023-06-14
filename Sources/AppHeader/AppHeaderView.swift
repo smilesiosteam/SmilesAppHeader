@@ -134,12 +134,20 @@ public class AppHeaderView: UIView {
         smilesLocationHandler = SmilesLocationHandler.init(controller: delegate as? UIViewController, isFirstLaunch: isFirstLaunch)
         smilesLocationHandler?.smilesLocationHandlerDelegate = self
         smilesLocationHandler?.fireEvent = fireEvent
-        smilesLocationHandler?.showLocationToolTip = {
+        smilesLocationHandler?.showLocationToolTip = { [weak self] in
+            guard let self else { return }
             let (needToshow,contentVu) = toolTipInfo(self.smilesLocationHandler)
             if needToshow {
                 self.smilesLocationHandler?.toolTipForLocationShown = true
                 self.locationToolTip = EasyTipView(contentView: contentVu, preferences: EasyTipViewPreference.locationTipPreferences(), delegate: self.smilesLocationHandler as? EasyTipViewDelegate)
                 self.locationToolTip?.show(forView: self.locationArrowImageView)
+            }
+        }
+        smilesLocationHandler?.dismissLocationToolTip = { [weak self] in
+            guard let self else { return }
+            UIView.animate(withDuration: 0.2) {
+                self.locationToolTip?.dismiss()
+                self.smilesLocationHandler?.toolTipForLocationShown = false
             }
         }
 //        NotificationCenter.default.removeObserver(self, name: .LocationUpdated, object: nil)
