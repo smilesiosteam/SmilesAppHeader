@@ -129,7 +129,7 @@ public class AppHeaderView: UIView {
     }
     
         
-    public func setupHeaderView(backgroundColor: UIColor, searchBarColor: UIColor, pointsViewColor: UIColor?,  titleColor: UIColor, headerTitle: String, showHeaderNavigaton: Bool, topCurveShouldAdd: Bool = false, haveSearchBorder: Bool = false, shouldShowBag: Bool = false, isFirstLaunch: Bool = false, isGuestUser: Bool,toolTipInfo: @escaping((SmilesLocationHandler?) -> (Bool,UIView))) {
+    public func setupHeaderView(backgroundColor: UIColor, searchBarColor: UIColor, pointsViewColor: UIColor?,  titleColor: UIColor, headerTitle: String, showHeaderNavigaton: Bool, topCurveShouldAdd: Bool = false, haveSearchBorder: Bool = false, shouldShowBag: Bool = false, isFirstLaunch: Bool = false, isGuestUser: Bool, showHeaderContent: Bool = true, toolTipInfo: @escaping((SmilesLocationHandler?) -> (Bool,UIView))) {
         self.isGuestUser = isGuestUser
         smilesLocationHandler = SmilesLocationHandler.init(controller: delegate as? UIViewController, isFirstLaunch: isFirstLaunch)
         smilesLocationHandler?.smilesLocationHandlerDelegate = self
@@ -211,6 +211,12 @@ public class AppHeaderView: UIView {
             pointsIconImageView.isHidden = false
             pointsIconImageView.image = UIImage(named: "smileyHearts")
         }
+        
+        if !showHeaderContent {
+            bodyView.isHidden = true
+            bodyViewCompact.isHidden = true
+        }
+        
     }
     
     
