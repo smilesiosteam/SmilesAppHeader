@@ -129,13 +129,13 @@ public class AppHeaderView: UIView {
     }
     
         
-    public func setupHeaderView(backgroundColor: UIColor, searchBarColor: UIColor, pointsViewColor: UIColor?,  titleColor: UIColor, headerTitle: String, showHeaderNavigaton: Bool, topCurveShouldAdd: Bool = false, haveSearchBorder: Bool = false, shouldShowBag: Bool = false, isFirstLaunch: Bool = false, isGuestUser: Bool, showHeaderContent: Bool = true, toolTipInfo: @escaping((SmilesLocationHandler?) -> (Bool,UIView))) {
+    public func setupHeaderView(backgroundColor: UIColor, searchBarColor: UIColor, pointsViewColor: UIColor?,  titleColor: UIColor, headerTitle: String, showHeaderNavigaton: Bool, topCurveShouldAdd: Bool = false, haveSearchBorder: Bool = false, shouldShowBag: Bool = false, isFirstLaunch: Bool = false, isGuestUser: Bool, showHeaderContent: Bool = true, toolTipInfo: ((SmilesLocationHandler?) -> (Bool,UIView))?) {
         self.isGuestUser = isGuestUser
         smilesLocationHandler = SmilesLocationHandler.init(controller: delegate as? UIViewController, isFirstLaunch: isFirstLaunch)
         smilesLocationHandler?.smilesLocationHandlerDelegate = self
         smilesLocationHandler?.fireEvent = fireEvent
         smilesLocationHandler?.showLocationToolTip = { [weak self] in
-            guard let self else { return }
+            guard let self, let toolTipInfo = toolTipInfo else { return }
             let (needToshow,contentVu) = toolTipInfo(self.smilesLocationHandler)
             if needToshow {
                 self.smilesLocationHandler?.toolTipForLocationShown = true
