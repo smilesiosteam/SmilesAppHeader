@@ -11,6 +11,7 @@ import LottieAnimationManager
 import SmilesLocationHandler
 import SmilesEasyTipView
 import SmilesUtilities
+import SmilesFontsManager
 
 public protocol AppHeaderDelegate: AnyObject {
     func didTapOnBackButton()
@@ -165,7 +166,7 @@ public class AppHeaderView: UIView {
         locationArrowImageView.image = locationArrowImageView.image?.withRenderingMode(.alwaysTemplate)
         locationArrowImageView.tintColor = titleColor
         title.text = headerTitle
-        let searchLabelColor: UIColor = searchBarColor == .white ? .appRevampHomeSearchColor : .appRevampBorderGrayColor
+        let searchLabelColor: UIColor = searchBarColor == .white ? .black.withAlphaComponent(0.6) : .appRevampBorderGrayColor
         searchLabel.textColor = searchLabelColor
         searchLabelCompact.textColor = .appRevampHomeSearchColor
         headerView.isHidden = !showHeaderNavigaton
@@ -222,12 +223,14 @@ public class AppHeaderView: UIView {
     
     
     public func configureFonts() {
-        self.title.font = .circularXXTTMediumFont(size: 16)
-        self.locationNickName.font = .circularXXTTBoldFont(size: 18)
-        self.pointsLabel.font = .circularXXTTBoldFont(size: 18)
+        self.title.fontTextStyle = .smilesTitle1
+        self.locationNickName.fontTextStyle = .smilesTitle1
+        self.locationTitleLabel.fontTextStyle = .smilesTitle3
+        self.pointsLabel.fontTextStyle = .smilesHeadline3
         self.searchLabel.font = .circularXXTTBookFont(size: 16)
         self.searchLabelCompact.font = .circularXXTTBookFont(size: 16)
 
+        self.promotionLabel.fontTextStyle = .smilesTitle3
     }
     
     public func setBottomSegment(title1: String?, icon1: UIImage?, title2: String?, icon2: UIImage?, shouldShowSegment: Bool) {
@@ -235,10 +238,12 @@ public class AppHeaderView: UIView {
             self.bottomCurveView.isHidden = true
             self.bottomSegmentView.isHidden = false
             self.bottomSegment1Title.text = title1
+            self.bottomSegment1Title.fontTextStyle = .smilesTitle1
             self.bottomSegment1Icon.isHidden = false
             self.bottomSegment1Icon.tintColor = .foodEnableColor
             self.bottomSegment1Icon.image = icon1
             self.bottomSegment2Title.text = title2
+            self.bottomSegment2Title.fontTextStyle = .smilesTitle1
             self.bottomSegment2Icon.isHidden = false
             self.bottomSegment2Icon.tintColor = .foodDisableColor
             self.bottomSegment2Icon.image = icon2
@@ -250,10 +255,12 @@ public class AppHeaderView: UIView {
             self.bottomCurveView.isHidden = true
             self.bottomSegmentView.isHidden = false
             self.bottomSegment1Title.text = title1
+            self.bottomSegment1Title.fontTextStyle = .smilesTitle1
             self.bottomSegment1Icon.isHidden = false
             self.bottomSegment1Icon.tintColor = isFromPickup ? .foodDisableColor : .foodEnableColor
             self.bottomSegment1Icon.image = icon1
             self.bottomSegment2Title.text = title2
+            self.bottomSegment2Title.fontTextStyle = .smilesTitle1
             self.bottomSegment2Icon.isHidden = false
             self.bottomSegment2Icon.tintColor = isFromPickup ? .foodEnableColor :.foodDisableColor
             self.bottomSegment2Icon.image = icon2
