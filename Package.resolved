@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/smilesiosteam/NetworkingLayer.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "48c34bc08fa85f5d76d031bbd3078236577506b9"
+        "branch" : "shared_Models",
+        "revision" : "760f80b702a74dbcc8eb1975f6a454c06085c416"
       }
     },
     {
@@ -77,8 +77,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/smilesiosteam/SmilesBaseMainRequest.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "306ab0bb0ba9433427dc91cf35ac24bf31d23ed7"
+        "branch" : "shared_models",
+        "revision" : "7e2c6a96508b0810602ee674d9061eddaafb1e15"
       }
     },
     {
@@ -86,8 +86,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/smilesiosteam/SmilesEasyTipView.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "8466cfafde2e79ceb957a4bd49cee4278fe20986"
+        "branch" : "shared_Models",
+        "revision" : "5985e6e7bf27d2b76b390b7af50e2b9c2e7e9fa3"
       }
     },
     {
@@ -113,8 +113,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/smilesiosteam/SmilesLocationHandler.git",
       "state" : {
+        "branch" : "shared_Models",
+        "revision" : "a6f04c2965507b6e0d39147871d895c53f583098"
+      }
+    },
+    {
+      "identity" : "smilessharedmodels",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/smilesiosteam/SmilesSharedModels.git",
+      "state" : {
         "branch" : "main",
-        "revision" : "878b8c812467d8d6954fb06dbc68adf33fe42f20"
+        "revision" : "7200856e7d5c2ca117f3faba30506a88c16d7c82"
       }
     },
     {
@@ -131,8 +140,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/smilesiosteam/SmilesUtilities.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "4ce820f59605882d6deccb8148a81a1134a486ef"
+        "branch" : "shared_Models",
+        "revision" : "af27e89169b11d3a8b86c8cd977c56ef4ad892bb"
       }
     }
   ],
