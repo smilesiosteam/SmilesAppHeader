@@ -155,7 +155,7 @@ public class AppHeaderView: UIView {
 //        NotificationCenter.default.addObserver(self, selector: #selector(locationUpdatedManually(_:)), name: .LocationUpdated, object: nil)
         
         
-        view_container.backgroundColor = backgroundColor
+        view_container.backgroundColor = self.bodyViewCompact.isHidden ? backgroundColor : .white
         searchView.backgroundColor = searchBarColor
         searchViewCompact.backgroundColor = .appRevampHomeCompactSearchColor
         pointsView.backgroundColor = pointsViewColor ?? searchBarColor
@@ -233,20 +233,21 @@ public class AppHeaderView: UIView {
         self.promotionLabel.fontTextStyle = .smilesTitle3
     }
     
-    public func setBottomSegment(title1: String?, icon1: UIImage?, title2: String?, icon2: UIImage?, shouldShowSegment: Bool) {
+    func setBottomSegment(title1: String?, icon1: UIImage?, title2: String?, icon2: UIImage?, shouldShowSegment: Bool, isPayBillsView: Bool = false) {
         if shouldShowSegment {
             self.bottomCurveView.isHidden = true
             self.bottomSegmentView.isHidden = false
             self.bottomSegment1Title.text = title1
             self.bottomSegment1Title.fontTextStyle = .smilesTitle1
             self.bottomSegment1Icon.isHidden = false
-            self.bottomSegment1Icon.tintColor = .foodEnableColor
+            self.bottomSegment1Icon.tintColor = isPayBillsView ? .foodEnableColor : .foodDisableColor
             self.bottomSegment1Icon.image = icon1
             self.bottomSegment2Title.text = title2
             self.bottomSegment2Title.fontTextStyle = .smilesTitle1
             self.bottomSegment2Icon.isHidden = false
-            self.bottomSegment2Icon.tintColor = .foodDisableColor
+            self.bottomSegment2Icon.tintColor = isPayBillsView ? .foodDisableColor : .foodEnableColor
             self.bottomSegment2Icon.image = icon2
+            buttonStatus(isButton1Selected: isPayBillsView)
         }
     }
     
@@ -262,7 +263,7 @@ public class AppHeaderView: UIView {
             self.bottomSegment2Title.text = title2
             self.bottomSegment2Title.fontTextStyle = .smilesTitle1
             self.bottomSegment2Icon.isHidden = false
-            self.bottomSegment2Icon.tintColor = isFromPickup ? .foodEnableColor :.foodDisableColor
+            self.bottomSegment2Icon.tintColor = isFromPickup ? .foodEnableColor : .foodDisableColor
             self.bottomSegment2Icon.image = icon2
             buttonStatus(isButton1Selected: !isFromPickup)
         }
