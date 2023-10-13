@@ -229,7 +229,6 @@ public class AppHeaderView: UIView {
         self.pointsLabel.fontTextStyle = .smilesHeadline3
         self.searchLabel.font = .circularXXTTBookFont(size: 16)
         self.searchLabelCompact.font = .circularXXTTBookFont(size: 16)
-
         self.promotionLabel.fontTextStyle = .smilesTitle3
     }
     
@@ -240,12 +239,12 @@ public class AppHeaderView: UIView {
             self.bottomSegment1Title.text = title1
             self.bottomSegment1Title.fontTextStyle = .smilesTitle1
             self.bottomSegment1Icon.isHidden = false
-            self.bottomSegment1Icon.tintColor = isPayBillsView ? .foodEnableColor : .foodDisableColor
+            self.bottomSegment1Icon.tintColor = isPayBillsView ? .foodEnableColor : .appRevampFoodDisableIconGrayColor
             self.bottomSegment1Icon.image = icon1
             self.bottomSegment2Title.text = title2
             self.bottomSegment2Title.fontTextStyle = .smilesTitle1
             self.bottomSegment2Icon.isHidden = false
-            self.bottomSegment2Icon.tintColor = isPayBillsView ? .foodDisableColor : .foodEnableColor
+            self.bottomSegment2Icon.tintColor = isPayBillsView ? .appRevampFoodDisableIconGrayColor : .foodEnableColor
             self.bottomSegment2Icon.image = icon2
             buttonStatus(isButton1Selected: isPayBillsView)
         }
@@ -258,12 +257,12 @@ public class AppHeaderView: UIView {
             self.bottomSegment1Title.text = title1
             self.bottomSegment1Title.fontTextStyle = .smilesTitle1
             self.bottomSegment1Icon.isHidden = false
-            self.bottomSegment1Icon.tintColor = isFromPickup ? .foodDisableColor : .foodEnableColor
+            self.bottomSegment1Icon.tintColor = isFromPickup ? .appRevampFoodDisableIconGrayColor : .foodEnableColor
             self.bottomSegment1Icon.image = icon1
             self.bottomSegment2Title.text = title2
             self.bottomSegment2Title.fontTextStyle = .smilesTitle1
             self.bottomSegment2Icon.isHidden = false
-            self.bottomSegment2Icon.tintColor = isFromPickup ? .foodEnableColor : .foodDisableColor
+            self.bottomSegment2Icon.tintColor = isFromPickup ? .foodEnableColor : .appRevampFoodDisableIconGrayColor
             self.bottomSegment2Icon.image = icon2
             buttonStatus(isButton1Selected: !isFromPickup)
         }
@@ -394,12 +393,12 @@ public class AppHeaderView: UIView {
             bottomSegment1BottomBar.backgroundColor = .foodEnableColor
             bottomSegment1BottomBar.isHidden = false
             
-            bottomSegment2Icon.image = bottomSegment2Icon.image?.imageWithColor(color1: .foodDisableColor)
-            bottomSegment2Title.textColor = .foodDisableColor
+            bottomSegment2Icon.image = bottomSegment2Icon.image?.imageWithColor(color1: .appRevampFoodDisableIconGrayColor)
+            bottomSegment2Title.textColor = .appRevampFoodDisableTextGrayColor
             bottomSegment2BottomBar.isHidden = true
         } else {
-            bottomSegment1Icon.image = bottomSegment1Icon.image?.imageWithColor(color1: .foodDisableColor)
-            bottomSegment1Title.textColor = .foodDisableColor
+            bottomSegment1Icon.image = bottomSegment1Icon.image?.imageWithColor(color1: .appRevampFoodDisableIconGrayColor)
+            bottomSegment1Title.textColor = .appRevampFoodDisableTextGrayColor
             bottomSegment1BottomBar.isHidden = true
             
             bottomSegment2Icon.image = bottomSegment2Icon.image?.imageWithColor(color1: .foodEnableColor)
