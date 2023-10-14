@@ -232,7 +232,7 @@ public class AppHeaderView: UIView {
         self.promotionLabel.fontTextStyle = .smilesTitle3
     }
     
-    func setBottomSegment(title1: String?, icon1: UIImage?, title2: String?, icon2: UIImage?, shouldShowSegment: Bool, isPayBillsView: Bool = false) {
+    public func setBottomSegment(title1: String?, icon1: UIImage?, title2: String?, icon2: UIImage?, shouldShowSegment: Bool, isPayBillsView: Bool = false) {
         if shouldShowSegment {
             self.bottomCurveView.isHidden = true
             self.bottomSegmentView.isHidden = false
