@@ -280,6 +280,14 @@ public class AppHeaderView: UIView {
         view_container.backgroundColor = color
     }
     
+    public func setCustomImageForBackButton(imageName: String) {
+        if let image = UIImage(named: imageName, in: Bundle.module, compatibleWith: nil) {
+            self.headerBackButton.setImage(image, for: .normal)
+            self.headerBackButton.backgroundColor = .clear
+            self.backButtonView.backgroundColor = .clear
+        }
+    }
+    
     public func setPointsIcon(with iconURL: String?, shouldShowAnimation: Bool = true) {
         if let iconJsonAnimationUrl = iconURL, !iconJsonAnimationUrl.isEmpty {
             lottieAnimationView.isHidden = false
@@ -330,10 +338,12 @@ public class AppHeaderView: UIView {
     public func setHeaderTitleIcon(iconURL: String?) {
         self.headerTitleImageView.setImageWithUrlString(iconURL ?? "", defaultImage: "")
     }
-    public func adjustUI(compact:Bool){
+    public func adjustUI(compact:Bool, isBackgroundColorClear:Bool = false){
         backBtnBottomSpace.constant = compact ? 8 : 22
         headerBarHeight.constant = compact ? 40 : 54
-        backButtonView.backgroundColor = compact ? .appRevampHomeCompactSearchColor : .white
+        if isBackgroundColorClear == false {
+            backButtonView.backgroundColor = compact ? .appRevampHomeCompactSearchColor : .white
+        }
         UIView.transition(with: !bodyView.isHidden ? bodyView : bodyViewCompact, duration: 0.2, options: UIView.AnimationOptions.transitionCrossDissolve){
             self.bodyView.isHidden = compact
             self.bodyViewCompact.isHidden = !compact
