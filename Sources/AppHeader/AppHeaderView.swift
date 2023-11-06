@@ -36,6 +36,7 @@ public class AppHeaderView: UIView {
     
     // MARK: -- Outlets
     
+    @IBOutlet weak var topNavbarHeightConst: NSLayoutConstraint!
     
     @IBOutlet weak var locationView: UIStackView!
     @IBOutlet weak var locationNickName: UILabel!
@@ -89,6 +90,13 @@ public class AppHeaderView: UIView {
     var locationToolTip: EasyTipView?
     public var fireEvent: ((String) -> Void)?
     var isGuestUser = true
+    
+    var hasTopNotch: Bool {
+        if #available(iOS 11.0, tvOS 11.0, *) {
+            return UIApplication.shared.delegate?.window??.safeAreaInsets.top ?? 0 > 20
+        }
+        return false
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -216,6 +224,10 @@ public class AppHeaderView: UIView {
         if !showHeaderContent {
             bodyView.isHidden = true
             bodyViewCompact.isHidden = true
+        }
+        
+        if !hasTopNotch {
+            self.topNavbarHeightConst.constant = 10
         }
         
     }
