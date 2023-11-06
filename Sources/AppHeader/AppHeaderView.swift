@@ -227,7 +227,7 @@ public class AppHeaderView: UIView {
         }
         
         if !hasTopNotch {
-            self.topNavbarHeightConst.constant = 10
+            self.topNavbarHeightConst.constant = 30
         }
         
     }
