@@ -305,8 +305,9 @@ public class AppHeaderView: UIView {
             lottieAnimationView.isHidden = false
             pointsIconImageView.isHidden = true
             lottieAnimationView.subviews.forEach({ $0.removeFromSuperview() })
-            LottieAnimationManager.showAnimationFromUrl(FromUrl: iconJsonAnimationUrl, animationBackgroundView: self.lottieAnimationView, removeFromSuper: false, loopMode: .playOnce, shouldAnimate: shouldShowAnimation) { _ in }
-            
+            if let url = URL(string: iconJsonAnimationUrl) {
+                LottieAnimationManager.showAnimationFromUrl(FromUrl: url, animationBackgroundView: self.lottieAnimationView, removeFromSuper: false, loopMode: .playOnce, shouldAnimate: shouldShowAnimation) { _ in }
+            }
         } else {
             pointsIconImageView.isHidden = false
             lottieAnimationView.isHidden = true
