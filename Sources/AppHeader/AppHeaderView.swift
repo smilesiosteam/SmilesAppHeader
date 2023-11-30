@@ -138,7 +138,7 @@ public class AppHeaderView: UIView {
     }
     
         
-    public func setupHeaderView(backgroundColor: UIColor, searchBarColor: UIColor, pointsViewColor: UIColor?,  titleColor: UIColor, headerTitle: String, showHeaderNavigaton: Bool, topCurveShouldAdd: Bool = false, haveSearchBorder: Bool = false, shouldShowBag: Bool = false, isFirstLaunch: Bool = false, isGuestUser: Bool, controllerType: LocationCheckEntryPoint = .fromBAU, showHeaderContent: Bool = true, toolTipInfo: ((SmilesLocationHandler?) -> (Bool,UIView))?) {
+    public func setupHeaderView(backgroundColor: UIColor, searchBarColor: UIColor, pointsViewColor: UIColor?,  titleColor: UIColor, headerTitle: String, showHeaderNavigaton: Bool, topCurveShouldAdd: Bool = false, haveSearchBorder: Bool = false, shouldShowBag: Bool = false, isFirstLaunch: Bool = false, isGuestUser: Bool, controllerType: LocationCheckEntryPoint = .fromBAU, showHeaderContent: Bool = true) {
         self.isGuestUser = isGuestUser
         smilesLocationHandler = SmilesLocationHandler.init(delegate: self, isFirstLaunch: isFirstLaunch,controllerType: controllerType)
         smilesLocationHandler?.fireEvent = fireEvent
