@@ -24,8 +24,6 @@ public protocol AppHeaderDelegate: AnyObject {
 }
 
 public extension AppHeaderDelegate {
-    func showPopupForLocationSetting(){}
-    func didTapOnToolTipSearch(){}
     func locationUpdatedSuccessfully(){}
     func segmentLeftBtnTapped(index: Int) {}
     func segmentRightBtnTapped(index: Int) {}
@@ -412,14 +410,7 @@ public class AppHeaderView: UIView {
 }
 
 
-extension AppHeaderView : SmilesLocationHandlerDelegate{
-    public func showPopupForLocationSetting() {
-        self.delegate?.showPopupForLocationSetting()
-    }
-    
-    public func searchBtnTappedOnToolTip() {
-        self.delegate?.didTapOnToolTipSearch()
-    }
+extension AppHeaderView : SmilesLocationHandlerDelegate {
     
     public func getUserLocationWith(locationName: String, andLocationNickName: String) {
         self.setLocation(locationName: locationName, locationNickName: andLocationNickName)
@@ -428,4 +419,5 @@ extension AppHeaderView : SmilesLocationHandlerDelegate{
     public func locationUpdatedSuccessfully(){
         self.delegate?.locationUpdatedSuccessfully()
     }
+    
 }
