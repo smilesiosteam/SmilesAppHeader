@@ -142,25 +142,6 @@ public class AppHeaderView: UIView {
         self.isGuestUser = isGuestUser
         smilesLocationHandler = SmilesLocationHandler.init(delegate: self, isFirstLaunch: isFirstLaunch,controllerType: controllerType)
         smilesLocationHandler?.fireEvent = fireEvent
-        smilesLocationHandler?.showLocationToolTip = { [weak self] in
-            guard let self, let toolTipInfo = toolTipInfo else { return }
-            let (needToshow,contentVu) = toolTipInfo(self.smilesLocationHandler)
-            if needToshow {
-                self.smilesLocationHandler?.toolTipForLocationShown = true
-                self.locationToolTip = EasyTipView(contentView: contentVu, preferences: EasyTipViewPreference.locationTipPreferences(), delegate: self.smilesLocationHandler as? EasyTipViewDelegate)
-                self.locationToolTip?.show(forView: self.locationArrowImageView)
-            }
-        }
-        smilesLocationHandler?.dismissLocationToolTip = { [weak self] in
-            guard let self else { return }
-            UIView.animate(withDuration: 0.2) {
-                self.locationToolTip?.dismiss()
-                self.smilesLocationHandler?.toolTipForLocationShown = false
-            }
-        }
-//        NotificationCenter.default.removeObserver(self, name: .LocationUpdated, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(locationUpdatedManually(_:)), name: .LocationUpdated, object: nil)
-        
         
         view_container.backgroundColor = self.bodyViewCompact.isHidden ? backgroundColor : .white
         searchView.backgroundColor = searchBarColor
@@ -402,11 +383,6 @@ public class AppHeaderView: UIView {
         let nib = UINib(nibName: "AppHeaderView", bundle: Bundle.module)
         return nib.instantiate(withOwner: self, options: nil).first as? UIView
     }
-    
-    @objc public func locationUpdatedManually(_ notification: Notification) {
-        smilesLocationHandler?.locationUpdatedManually(notification)
-    }
-    
     
     public func buttonStatus(isButton1Selected: Bool) {
         if isButton1Selected {
