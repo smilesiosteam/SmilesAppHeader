@@ -21,6 +21,8 @@ public protocol AppHeaderDelegate: AnyObject {
     func segmentLeftBtnTapped(index: Int)
     func rewardPointsBtnTapped()
     func didTapOnBagButton()
+    func locationUpdatedSuccessfully()
+    func gotUserLocation()
 }
 
 public extension AppHeaderDelegate {
@@ -28,6 +30,7 @@ public extension AppHeaderDelegate {
     func segmentLeftBtnTapped(index: Int) {}
     func segmentRightBtnTapped(index: Int) {}
     func didTapOnBagButton() {}
+    func gotUserLocation() {}
 }
 
 public class AppHeaderView: UIView {
@@ -136,7 +139,7 @@ public class AppHeaderView: UIView {
     }
     
         
-    public func setupHeaderView(backgroundColor: UIColor, searchBarColor: UIColor, pointsViewColor: UIColor?,  titleColor: UIColor, headerTitle: String, showHeaderNavigaton: Bool, topCurveShouldAdd: Bool = false, haveSearchBorder: Bool = false, shouldShowBag: Bool = false, isFirstLaunch: Bool = false, isGuestUser: Bool, controllerType: LocationCheckEntryPoint = .fromBAU, showHeaderContent: Bool = true) {
+    public func setupHeaderView(backgroundColor: UIColor, searchBarColor: UIColor, pointsViewColor: UIColor?,  titleColor: UIColor, headerTitle: String, showHeaderNavigaton: Bool, topCurveShouldAdd: Bool = false, haveSearchBorder: Bool = false, shouldShowBag: Bool = false, isFirstLaunch: Bool = false, isGuestUser: Bool, controllerType: LocationCheckEntryPoint = .fromDashboard, showHeaderContent: Bool = true) {
         self.isGuestUser = isGuestUser
         smilesLocationHandler = SmilesLocationHandler.init(delegate: self, isFirstLaunch: isFirstLaunch,controllerType: controllerType)
         smilesLocationHandler?.fireEvent = fireEvent
@@ -412,8 +415,12 @@ public class AppHeaderView: UIView {
 
 extension AppHeaderView : SmilesLocationHandlerDelegate {
     
-    public func getUserLocationWith(locationName: String, andLocationNickName: String) {
+    public func showUserLocation(locationName: String, andLocationNickName: String) {
         self.setLocation(locationName: locationName, locationNickName: andLocationNickName)
+    }
+    
+    public func gotUserLocation() {
+        self.delegate?.gotUserLocation()
     }
     
     public func locationUpdatedSuccessfully(){

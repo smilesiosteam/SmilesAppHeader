@@ -141,7 +141,7 @@
       "location" : "https://github.com/smilesiosteam/SmilesLocationHandler.git",
       "state" : {
         "branch" : "address_book",
-        "revision" : "aa65051aaa2c535cba43e68bbc641689aafd37b0"
+        "revision" : "83efcb8dd5652b92cdb84e8a92326f08828da7fa"
       }
     },
     {
@@ -159,7 +159,7 @@
       "location" : "https://github.com/smilesiosteam/SmilesUtilities.git",
       "state" : {
         "branch" : "main",
-        "revision" : "5912b2771215bbd74688e82f6ef049c68ac3de89"
+        "revision" : "778ddfe44c2e8ab1805621eaf0bd06cd299eaa52"
       }
     }
   ],
