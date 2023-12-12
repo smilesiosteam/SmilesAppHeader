@@ -306,11 +306,7 @@ public class AppHeaderView: UIView {
     public func setLocation(locationName: String, locationNickName: String) {
     print("------ locationName \(locationName)0000000 locationNickName ---- \(locationNickName)")
         
-        if locationNickName.isEmpty || locationNickName == "" {
-            self.locationNickName.text = "CurrentLocation".localizedString
-        } else {
-            self.locationNickName.text = locationNickName.upperCamelCased
-        }
+        self.locationNickName.text = locationNickName
         self.locationTitleLabel.text = locationName
         
         if isGuestUser && !LocationManager.shared.isEnabled() {
