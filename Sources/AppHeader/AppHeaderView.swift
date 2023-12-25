@@ -195,6 +195,7 @@ public class AppHeaderView: UIView {
             self.searchViewCompact.RoundedViewConrner(cornerRadius: 12.0)
             self.searchIconImageView.image = UIImage(named: "searchRevampIcon")?.withTintColor(searchLabelColor, renderingMode: .alwaysOriginal)
             self.searchIconImageViewCompact.image = UIImage(named: "searchRevampIcon")?.withTintColor(.appRevampHomeSearchColor, renderingMode: .alwaysOriginal)
+            self.lottieAnimationView.RoundedViewConrner(cornerRadius: self.lottieAnimationView.bounds.height / 2)
         }
         
         if haveSearchBorder {
@@ -302,6 +303,7 @@ public class AppHeaderView: UIView {
     
     public func setPointsIcon(with iconURL: String?, shouldShowAnimation: Bool = true) {
         if let iconJsonAnimationUrl = iconURL, !iconJsonAnimationUrl.isEmpty {
+            lottieAnimationView.addBorder(withBorderWidth: 1.0, borderColor: .black.withAlphaComponent(0.1))
             lottieAnimationView.isHidden = false
             pointsIconImageView.isHidden = true
             lottieAnimationView.subviews.forEach({ $0.removeFromSuperview() })
