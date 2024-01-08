@@ -309,7 +309,7 @@ public class AppHeaderView: UIView {
         self.locationNickName.text = locationNickName
         self.locationTitleLabel.text = locationName
         
-        if isGuestUser && !LocationManager.shared.isEnabled() {
+        if isGuestUser && !LocationManager.shared.isLocationEnabled {
             locationView.isHidden = true
         } else {
             locationView.isHidden = false
