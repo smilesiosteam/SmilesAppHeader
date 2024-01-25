@@ -139,9 +139,9 @@ public class AppHeaderView: UIView {
     }
     
         
-    public func setupHeaderView(backgroundColor: UIColor, searchBarColor: UIColor, pointsViewColor: UIColor?,  titleColor: UIColor, headerTitle: String, showHeaderNavigaton: Bool, topCurveShouldAdd: Bool = false, haveSearchBorder: Bool = false, shouldShowBag: Bool = false, isFirstLaunch: Bool = false, isGuestUser: Bool, controllerType: LocationCheckEntryPoint = .fromDashboard, showHeaderContent: Bool = true) {
+    public func setupHeaderView(backgroundColor: UIColor, searchBarColor: UIColor, pointsViewColor: UIColor?,  titleColor: UIColor, headerTitle: String, showHeaderNavigaton: Bool, topCurveShouldAdd: Bool = false, haveSearchBorder: Bool = false, shouldShowBag: Bool = false, isFirstLaunch: Bool = false, updateMambaLocation: Bool = false, isGuestUser: Bool, controllerType: LocationCheckEntryPoint = .fromDashboard, showHeaderContent: Bool = true) {
         self.isGuestUser = isGuestUser
-        smilesLocationHandler = SmilesLocationHandler.init(delegate: self, isFirstLaunch: isFirstLaunch,controllerType: controllerType)
+        smilesLocationHandler = SmilesLocationHandler.init(delegate: self, isFirstLaunch: isFirstLaunch, updateMambaLocation: updateMambaLocation,controllerType: controllerType)
         smilesLocationHandler?.fireEvent = fireEvent
         
         view_container.backgroundColor = self.bodyViewCompact.isHidden ? backgroundColor : .white
